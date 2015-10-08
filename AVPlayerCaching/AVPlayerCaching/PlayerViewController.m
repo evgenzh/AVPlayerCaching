@@ -7,30 +7,76 @@
 //
 
 #import "PlayerViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "NSURL+Tools.h"
+
+@interface PlayerView : UIView
+@property (nonatomic, retain) AVPlayer *player;
+@end
+
+@implementation PlayerView
++ (Class)layerClass {
+    return [AVPlayerLayer class];
+}
+
+- (AVPlayer *)player {
+    return [(AVPlayerLayer *)self.layer player];
+}
+
+- (void)setPlayer:(AVPlayer *)player {
+    [(AVPlayerLayer *)self.layer setPlayer:player];
+}
+@end
 
 @interface PlayerViewController ()
+{
+    AVPlayer *_player;
+}
+
+@property (nonatomic, weak) IBOutlet UIToolbar *playerToolBar;
+@property (nonatomic, assign) BOOL playing;
 
 @end
 
 @implementation PlayerViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)showPlayerWithNewURL:(NSURL *)url {
+    if (!_player) {
+        [_player removeObserver:self forKeyPath:@"rate"];
+    }
+    _player = [self playerWithUrl:url];
+    [_player addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
+    
+    
+    [(PlayerView *)self.view setPlayer:_player];
+
+    [self updateToolbarButton];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (AVPlayer *)playerWithUrl:(NSURL *)url {
+    return [AVPlayer playerWithURL:url];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UI
+
+- (void)updateToolbarButton {
+    UIBarButtonSystemItem btnType = self.playing ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: btnType target:self action:@selector(playPause)];
+    self.playerToolBar.items = [NSArray arrayWithObject:item];
 }
-*/
 
+- (void)playPause {
+    if (self.playing) {
+        [_player pause];
+    } else {
+        [_player play];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"rate"]) {
+        self.playing = (_player.rate > 0);
+        [self updateToolbarButton];
+    }
+}
 @end

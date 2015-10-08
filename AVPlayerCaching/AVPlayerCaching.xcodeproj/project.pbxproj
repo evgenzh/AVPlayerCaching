@@ -15,6 +15,7 @@
 		006E4F8B1BC6F60F00BF1711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006E4F891BC6F60F00BF1711 /* LaunchScreen.storyboard */; };
 		006E4F961BC6F60F00BF1711 /* AVPlayerCachingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4F951BC6F60F00BF1711 /* AVPlayerCachingTests.m */; };
 		006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FA41BC6F92200BF1711 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		006E4FA91BC70A8D00BF1711 /* NSURL+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		006E4F971BC6F60F00BF1711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006E4FA31BC6F92200BF1711 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		006E4FA41BC6F92200BF1711 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		006E4FA71BC70A8D00BF1711 /* NSURL+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Tools.h"; sourceTree = "<group>"; };
+		006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Tools.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		006E4F7A1BC6F60F00BF1711 /* AVPlayerCaching */ = {
 			isa = PBXGroup;
 			children = (
+				006E4FA61BC70A6B00BF1711 /* Categories */,
 				006E4F7E1BC6F60F00BF1711 /* AppDelegate.h */,
 				006E4F7F1BC6F60F00BF1711 /* AppDelegate.m */,
 				006E4F811BC6F60F00BF1711 /* ViewController.h */,
@@ -114,6 +118,15 @@
 				006E4F971BC6F60F00BF1711 /* Info.plist */,
 			);
 			path = AVPlayerCachingTests;
+			sourceTree = "<group>";
+		};
+		006E4FA61BC70A6B00BF1711 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				006E4FA71BC70A8D00BF1711 /* NSURL+Tools.h */,
+				006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006E4FA91BC70A8D00BF1711 /* NSURL+Tools.m in Sources */,
 				006E4F831BC6F60F00BF1711 /* ViewController.m in Sources */,
 				006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */,
 				006E4F801BC6F60F00BF1711 /* AppDelegate.m in Sources */,

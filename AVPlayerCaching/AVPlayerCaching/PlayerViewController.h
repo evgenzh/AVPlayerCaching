@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PlayerViewController : UIViewController
-@property (nonatomic, copy) NSURL *url;
+- (void)showPlayerWithNewURL:(NSURL *)url;
 @end

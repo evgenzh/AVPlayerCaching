@@ -20,6 +20,9 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIz-xM-iG2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="mmd-75-jBt"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="kTt-Jn-GmE" kind="embed" identifier="playerVC" id="RZj-kp-8Ft"/>
                                 </connections>
@@ -72,14 +75,13 @@
                             <constraint firstItem="MSG-I1-Sg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bb0-76-uKB"/>
                             <constraint firstItem="o9H-GX-ztu" firstAttribute="leading" secondItem="c7f-6b-HqA" secondAttribute="leading" id="dfg-wR-rsn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MSG-I1-Sg0" secondAttribute="bottom" constant="20" id="gLj-Bt-hVO"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vIz-xM-iG2" secondAttribute="bottom" constant="300" id="y6O-gM-ebx"/>
                             <constraint firstItem="vIz-xM-iG2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="yqW-oX-QPD"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="-377"/>
+            <point key="canvasLocation" x="1638" y="-448"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="4ff-8O-VI2">
@@ -89,19 +91,30 @@
                         <viewControllerLayoutGuide type="top" id="pxl-en-dnb"/>
                         <viewControllerLayoutGuide type="bottom" id="nVN-KP-Wty"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uxV-ZW-Hy8">
+                    <view key="view" contentMode="scaleToFill" id="uxV-ZW-Hy8" customClass="PlayerView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkU-mR-Cau">
-                                <rect key="frame" x="191" y="117" width="46" height="30"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-BG-L2u">
+                                <rect key="frame" x="0.0" y="256" width="600" height="44"/>
                                 <animations/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="tAO-CG-wbz"/>
+                                </constraints>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nVN-KP-Wty" firstAttribute="top" secondItem="gHT-BG-L2u" secondAttribute="bottom" id="GMX-ts-a7n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gHT-BG-L2u" secondAttribute="trailing" constant="-20" id="XET-Ki-7EG"/>
+                            <constraint firstItem="gHT-BG-L2u" firstAttribute="leading" secondItem="uxV-ZW-Hy8" secondAttribute="leadingMargin" constant="-20" id="yEi-pW-aUM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playerToolBar" destination="gHT-BG-L2u" id="aLn-hR-xkg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWf-gR-raY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
