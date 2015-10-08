@@ -87,17 +87,12 @@
 		006E4F7A1BC6F60F00BF1711 /* AVPlayerCaching */ = {
 			isa = PBXGroup;
 			children = (
+				006E4FAA1BC71DAD00BF1711 /* Controllers */,
+				006E4FAC1BC71E0100BF1711 /* Managers */,
 				006E4FA61BC70A6B00BF1711 /* Categories */,
+				006E4FAB1BC71DBF00BF1711 /* UI+Resources */,
 				006E4F7E1BC6F60F00BF1711 /* AppDelegate.h */,
 				006E4F7F1BC6F60F00BF1711 /* AppDelegate.m */,
-				006E4F811BC6F60F00BF1711 /* ViewController.h */,
-				006E4F821BC6F60F00BF1711 /* ViewController.m */,
-				006E4FA31BC6F92200BF1711 /* PlayerViewController.h */,
-				006E4FA41BC6F92200BF1711 /* PlayerViewController.m */,
-				006E4F841BC6F60F00BF1711 /* Main.storyboard */,
-				006E4F871BC6F60F00BF1711 /* Assets.xcassets */,
-				006E4F891BC6F60F00BF1711 /* LaunchScreen.storyboard */,
-				006E4F8C1BC6F60F00BF1711 /* Info.plist */,
 				006E4F7B1BC6F60F00BF1711 /* Supporting Files */,
 			);
 			path = AVPlayerCaching;
@@ -107,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				006E4F7C1BC6F60F00BF1711 /* main.m */,
+				006E4F8C1BC6F60F00BF1711 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -127,6 +123,34 @@
 				006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		006E4FAA1BC71DAD00BF1711 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				006E4F811BC6F60F00BF1711 /* ViewController.h */,
+				006E4F821BC6F60F00BF1711 /* ViewController.m */,
+				006E4FA31BC6F92200BF1711 /* PlayerViewController.h */,
+				006E4FA41BC6F92200BF1711 /* PlayerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		006E4FAB1BC71DBF00BF1711 /* UI+Resources */ = {
+			isa = PBXGroup;
+			children = (
+				006E4F841BC6F60F00BF1711 /* Main.storyboard */,
+				006E4F871BC6F60F00BF1711 /* Assets.xcassets */,
+				006E4F891BC6F60F00BF1711 /* LaunchScreen.storyboard */,
+			);
+			name = "UI+Resources";
+			sourceTree = "<group>";
+		};
+		006E4FAC1BC71E0100BF1711 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
