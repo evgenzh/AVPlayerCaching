@@ -14,6 +14,7 @@
 		006E4F881BC6F60F00BF1711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006E4F871BC6F60F00BF1711 /* Assets.xcassets */; };
 		006E4F8B1BC6F60F00BF1711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006E4F891BC6F60F00BF1711 /* LaunchScreen.storyboard */; };
 		006E4F961BC6F60F00BF1711 /* AVPlayerCachingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4F951BC6F60F00BF1711 /* AVPlayerCachingTests.m */; };
+		006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FA41BC6F92200BF1711 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		006E4F911BC6F60F00BF1711 /* AVPlayerCachingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerCachingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		006E4F951BC6F60F00BF1711 /* AVPlayerCachingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVPlayerCachingTests.m; sourceTree = "<group>"; };
 		006E4F971BC6F60F00BF1711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		006E4FA31BC6F92200BF1711 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		006E4FA41BC6F92200BF1711 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				006E4F7F1BC6F60F00BF1711 /* AppDelegate.m */,
 				006E4F811BC6F60F00BF1711 /* ViewController.h */,
 				006E4F821BC6F60F00BF1711 /* ViewController.m */,
+				006E4FA31BC6F92200BF1711 /* PlayerViewController.h */,
+				006E4FA41BC6F92200BF1711 /* PlayerViewController.m */,
 				006E4F841BC6F60F00BF1711 /* Main.storyboard */,
 				006E4F871BC6F60F00BF1711 /* Assets.xcassets */,
 				006E4F891BC6F60F00BF1711 /* LaunchScreen.storyboard */,
@@ -212,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				006E4F831BC6F60F00BF1711 /* ViewController.m in Sources */,
+				006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */,
 				006E4F801BC6F60F00BF1711 /* AppDelegate.m in Sources */,
 				006E4F7D1BC6F60F00BF1711 /* main.m in Sources */,
 			);
