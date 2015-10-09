@@ -10,7 +10,7 @@
 
 @interface NSURL (Tools)
 - (NSURL *)urlWithCustomScheme;
-- (NSURL *)urlWithHTTPScheme;
+- (NSURL *)urlWithOriginalScheme;
 - (BOOL)isCustomSchemeValid;
 - (BOOL)isHTTPSchemeValid;
 @end

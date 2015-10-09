@@ -7,8 +7,7 @@
 //
 
 #import "PlayerViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#import "NSURL+Tools.h"
+#import "ResourceLoaderDelegate.h"
 
 @interface PlayerView : UIView
 @property (nonatomic, retain) AVPlayer *player;
@@ -31,6 +30,7 @@
 @interface PlayerViewController ()
 {
     AVPlayer *_player;
+    ResourceLoaderDelegate *_resourceLoader;
 }
 
 @property (nonatomic, weak) IBOutlet UIToolbar *playerToolBar;
@@ -40,22 +40,39 @@
 
 @implementation PlayerViewController
 - (void)showPlayerWithNewURL:(NSURL *)url {
-    if (!_player) {
-        [_player removeObserver:self forKeyPath:@"rate"];
-    }
-    _player = [self playerWithUrl:url];
-    [_player addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
-    
-    
-    [(PlayerView *)self.view setPlayer:_player];
-
+    [self preparePlayerWithURL:url];
+    self.playing = NO;
     [self updateToolbarButton];
 }
 
-- (AVPlayer *)playerWithUrl:(NSURL *)url {
-    return [AVPlayer playerWithURL:url];
+- (void)preparePlayerWithURL:(NSURL *)url {
+    if (_resourceLoader == nil) {
+        _resourceLoader = [ResourceLoaderDelegate new];
+    }
+    
+    [_resourceLoader cancelAllResourceLoadings];
+    
+    AVPlayerItem *playerItem = [_resourceLoader createNewPlayerItemWithURL:url];
+    if (_player == nil) {
+        //TODO: M3U8 handling
+        _player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
+        [(PlayerView *)self.view setPlayer:_player];
+    } else {
+        [_player replaceCurrentItemWithPlayerItem:playerItem];
+    }
 }
 
+#pragma mark - observing
+- (void)addObservers {
+    [_player addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"rate"]) {
+        self.playing = (_player.rate > 0);
+        [self updateToolbarButton];
+    }
+}
 
 #pragma mark - UI
 
@@ -73,10 +90,4 @@
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"rate"]) {
-        self.playing = (_player.rate > 0);
-        [self updateToolbarButton];
-    }
-}
 @end

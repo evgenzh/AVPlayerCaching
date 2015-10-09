@@ -9,12 +9,17 @@
 #import "NSURL+Tools.h"
 
 static NSString *kCustomScheme = @"CustomScheme";
-static NSString *kHTTPScheme = @"http";
 
 @implementation NSURL (Tools)
 - (NSURL *)urlWithScheme:(NSString *)scheme {
     NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:NO];
-    components.scheme = kCustomScheme;
+    components.scheme = [scheme stringByAppendingString:components.scheme];
+    return components.URL;
+}
+
+- (NSURL *)urlWithOriginalScheme {
+    NSURLComponents *components = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:NO];
+    components.scheme = [components.scheme stringByReplacingOccurrencesOfString:kCustomScheme withString:@""];
     return components.URL;
 }
 
@@ -22,16 +27,8 @@ static NSString *kHTTPScheme = @"http";
     return [self urlWithScheme:kCustomScheme];
 }
 
-- (NSURL *)urlWithHTTPScheme {
-    return [self urlWithScheme:kHTTPScheme];
-}
-
 - (BOOL)isCustomSchemeValid {
-    return [self.scheme isEqualToString:kCustomScheme];
-}
-
-- (BOOL)isHTTPSchemeValid {
-    return [self.scheme isEqualToString:kHTTPScheme];
+    return [self.scheme rangeOfString:kCustomScheme].length > 0;
 }
 
 @end
