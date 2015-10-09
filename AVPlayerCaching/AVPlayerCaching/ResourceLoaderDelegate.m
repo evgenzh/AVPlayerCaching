@@ -9,6 +9,7 @@
 #import "ResourceLoaderDelegate.h"
 #import "ResourceLoaderItem.h"
 #import "ThreadSafeDictionary.h"
+#import "CachableData.h"
 #import "NSURL+Tools.h"
 
 @interface ResourceLoaderDelegate () <NSURLSessionDataDelegate>
@@ -48,14 +49,26 @@
     NSURL *url = [request.request.URL urlWithOriginalScheme];
     ResourceLoaderItem *item = self.items[url];
     if (item == nil) {
-        NSURLSessionTask *task = [self resumeNewLoadTaskWithURL:url];
-        item = [ResourceLoaderItem itemWithTask:task request:request];
+        CachableData *cahableData = [[CachableData alloc] initWithCachedFileName:url.absoluteString];
+        NSData *cachedData = cahableData.availableData;
+        NSUInteger requestOffset = cachedData.length;
+        NSURLSessionTask *task = [self resumeNewLoadTaskWithURL:url withOffset:requestOffset];
+        item = [ResourceLoaderItem itemWithTask:task request:request cache:cahableData];
         self.items[url] = item;
+        if (requestOffset > 0) {
+            [self respondData:cachedData forURL:url];
+        }
     }
 }
 
-- (NSURLSessionTask *)resumeNewLoadTaskWithURL:(NSURL *)url {
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+- (NSURLSessionTask *)resumeNewLoadTaskWithURL:(NSURL *)url withOffset:(NSUInteger)offset {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    if (offset > 0) {
+        NSString *range = @"bytes=";
+        range = [range stringByAppendingString:[@(offset) stringValue]];
+        range = [range stringByAppendingString:@"-"];
+        [request setValue:range forHTTPHeaderField:@"Range"];
+    }
     NSURLSessionTask *task = [_session dataTaskWithRequest:request];
     [task resume];
     return task;
@@ -65,8 +78,6 @@
     ResourceLoaderItem *item = self.items[url];
     NSURLSessionTask *task = item.task;
     [task cancel];
-    AVAssetResourceLoadingRequest *request = item.request;
-    [request finishLoadingWithError:[NSError errorWithDomain:NSStringFromClass([self class]) code:-1 userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"Resource loading is canceled", nil)}]];
     [self.items removeObjectForKey:url];
 }
 
@@ -83,16 +94,21 @@
     request.contentInformationRequest.byteRangeAccessSupported = YES;
     request.contentInformationRequest.contentType = response.MIMEType;
     request.contentInformationRequest.contentLength = response.expectedContentLength;
-    NSLog(@"ContentInformationRequest - %@", request.contentInformationRequest);
+//    NSLog(@"ContentInformationRequest - %@", request.contentInformationRequest);
 }
 
 - (void)respondData:(NSData *)data forURL:(NSURL *)url {
     ResourceLoaderItem *item = self.items[url];
     AVAssetResourceLoadingRequest *request = item.request;
-    NSLog(@"%@", request.dataRequest);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [request.dataRequest respondWithData:data];
-    });
+    CachableData *cachableData = item.cache;
+    [cachableData appendData:data];
+//    NSData *cdata = [cachableData readData:request.dataRequest.currentOffset length:data.length];
+    if (data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@", request.dataRequest);
+            [request.dataRequest respondWithData:data];
+        });
+    }
 }
 
 - (void)finishLoadingResourceWithError:(NSError *)error forURL:(NSURL *)url {
@@ -112,16 +128,14 @@
     return YES;
 }
 
-//- (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
-//    
-//}
-
 #pragma mark - URLSession
 - (void)configureURLSession {
     if (!_session) {
         if (!_session) {
-            _session = [NSURLSession sharedSession];
             NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+            config.HTTPMaximumConnectionsPerHost = 1;
+            config.timeoutIntervalForResource = 0;
+            config.timeoutIntervalForRequest = 0;
             _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
         }
     }
@@ -139,6 +153,7 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)dataTask didCompleteWithError:(NSError *)error {
     // TODO: data storing to cache file
+    [self cancelResourceLoadingForURL:dataTask.originalRequest.URL];
     [self finishLoadingResourceWithError:error forURL:dataTask.originalRequest.URL];
 }
 

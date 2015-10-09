@@ -10,7 +10,8 @@
 @interface ResourceLoaderItem : NSObject
 @property (nonatomic, readonly) id task;
 @property (nonatomic, readonly) id request;
+@property (nonatomic, readonly) id cache;
 
-+ (instancetype)itemWithTask:(id)task request:(id)request;
-- (instancetype)initWithTask:(id)task request:(id)request;
++ (instancetype)itemWithTask:(id)task request:(id)request cache:(id)cache;
+- (instancetype)initWithTask:(id)task request:(id)request cache:(id)cache;
 @end

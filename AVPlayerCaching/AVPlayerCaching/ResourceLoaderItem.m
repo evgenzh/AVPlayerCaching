@@ -10,15 +10,16 @@
 
 @implementation ResourceLoaderItem
 
-+ (instancetype)itemWithTask:(id)task request:(id)request {
-    return [[self alloc] initWithTask:task request:request];
++ (instancetype)itemWithTask:(id)task request:(id)request cache:(id)cache {
+    return [[self alloc] initWithTask:task request:request cache:cache];
 }
 
-- (instancetype)initWithTask:(id)task request:(id)request {
+- (instancetype)initWithTask:(id)task request:(id)request cache:(id)cache {
     self = [super init];
     if (self) {
         _task = task;
         _request = request;
+        _cache = cache;
     }
     return self;
 }
