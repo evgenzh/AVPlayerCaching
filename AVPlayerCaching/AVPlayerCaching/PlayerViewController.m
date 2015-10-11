@@ -54,7 +54,6 @@
     
     AVPlayerItem *playerItem = [_resourceLoader createNewPlayerItemWithURL:url];
     if (_player == nil) {
-        //TODO: M3U8 handling
         _player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
         [(PlayerView *)self.view setPlayer:_player];
     } else {
@@ -78,8 +77,10 @@
 
 - (void)updateToolbarButton {
     UIBarButtonSystemItem btnType = self.playing ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = 10;
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: btnType target:self action:@selector(playPause)];
-    self.playerToolBar.items = [NSArray arrayWithObject:item];
+    self.playerToolBar.items = @[space, item];
 }
 
 - (void)playPause {

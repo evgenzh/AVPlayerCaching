@@ -107,9 +107,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gHT-BG-L2u" firstAttribute="leading" secondItem="uxV-ZW-Hy8" secondAttribute="leading" id="10I-uW-MUP"/>
+                            <constraint firstAttribute="trailing" secondItem="gHT-BG-L2u" secondAttribute="trailing" id="7Oc-zG-CXL"/>
                             <constraint firstItem="nVN-KP-Wty" firstAttribute="top" secondItem="gHT-BG-L2u" secondAttribute="bottom" id="GMX-ts-a7n"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gHT-BG-L2u" secondAttribute="trailing" constant="-20" id="XET-Ki-7EG"/>
-                            <constraint firstItem="gHT-BG-L2u" firstAttribute="leading" secondItem="uxV-ZW-Hy8" secondAttribute="leadingMargin" constant="-20" id="yEi-pW-aUM"/>
                         </constraints>
                     </view>
                     <connections>
