@@ -38,16 +38,6 @@
                                     <action selector="playURL" destination="BYZ-38-t0r" eventType="touchUpInside" id="5JN-HV-U5i"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded 27%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSG-I1-Sg0">
-                                <rect key="frame" x="20" y="529" width="93.5" height="51"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="H08-nj-odc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9H-GX-ztu">
                                 <rect key="frame" x="30" y="350" width="173" height="30"/>
                                 <animations/>
@@ -71,10 +61,7 @@
                             <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="c7f-6b-HqA" secondAttribute="trailing" constant="404" id="ELc-Kb-Byk"/>
                             <constraint firstItem="c7f-6b-HqA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="EyQ-A9-7WP"/>
                             <constraint firstItem="c7f-6b-HqA" firstAttribute="top" secondItem="vIz-xM-iG2" secondAttribute="bottom" constant="10" id="Ivr-3y-rEt"/>
-                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="MSG-I1-Sg0" secondAttribute="trailing" constant="518" id="NON-qb-MUO"/>
-                            <constraint firstItem="MSG-I1-Sg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bb0-76-uKB"/>
                             <constraint firstItem="o9H-GX-ztu" firstAttribute="leading" secondItem="c7f-6b-HqA" secondAttribute="leading" id="dfg-wR-rsn"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MSG-I1-Sg0" secondAttribute="bottom" constant="20" id="gLj-Bt-hVO"/>
                             <constraint firstItem="vIz-xM-iG2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="yqW-oX-QPD"/>
                         </constraints>
                     </view>
@@ -95,6 +82,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1w-o4-DAG">
+                                <rect key="frame" x="0.0" y="235" width="600" height="21"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ih6-tY-mJh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHT-BG-L2u">
                                 <rect key="frame" x="0.0" y="256" width="600" height="44"/>
                                 <animations/>
@@ -110,15 +108,19 @@
                             <constraint firstItem="gHT-BG-L2u" firstAttribute="leading" secondItem="uxV-ZW-Hy8" secondAttribute="leading" id="10I-uW-MUP"/>
                             <constraint firstAttribute="trailing" secondItem="gHT-BG-L2u" secondAttribute="trailing" id="7Oc-zG-CXL"/>
                             <constraint firstItem="nVN-KP-Wty" firstAttribute="top" secondItem="gHT-BG-L2u" secondAttribute="bottom" id="GMX-ts-a7n"/>
+                            <constraint firstItem="A1w-o4-DAG" firstAttribute="leading" secondItem="uxV-ZW-Hy8" secondAttribute="leading" id="ciS-7P-ayH"/>
+                            <constraint firstAttribute="trailing" secondItem="A1w-o4-DAG" secondAttribute="trailing" id="d3o-jV-ZDc"/>
+                            <constraint firstItem="gHT-BG-L2u" firstAttribute="top" secondItem="A1w-o4-DAG" secondAttribute="bottom" id="zcq-4k-zxX"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="infoLabel" destination="A1w-o4-DAG" id="QXv-1d-byp"/>
                         <outlet property="playerToolBar" destination="gHT-BG-L2u" id="aLn-hR-xkg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWf-gR-raY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="-493"/>
+            <point key="canvasLocation" x="2145" y="166"/>
         </scene>
     </scenes>
 </document>

@@ -16,7 +16,7 @@
 		006E4F961BC6F60F00BF1711 /* AVPlayerCachingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4F951BC6F60F00BF1711 /* AVPlayerCachingTests.m */; };
 		006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FA41BC6F92200BF1711 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
 		006E4FA91BC70A8D00BF1711 /* NSURL+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */; settings = {ASSET_TAGS = (); }; };
-		006E4FAF1BC71EC200BF1711 /* ResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FAE1BC71EC200BF1711 /* ResourceLoaderDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		006E4FAF1BC71EC200BF1711 /* ResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FAE1BC71EC200BF1711 /* ResourceLoader.m */; settings = {ASSET_TAGS = (); }; };
 		006E4FB31BC7290300BF1711 /* ThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FB21BC7290300BF1711 /* ThreadSafeDictionary.m */; settings = {ASSET_TAGS = (); }; };
 		006E4FB61BC72B0D00BF1711 /* ResourceLoaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FB51BC72B0D00BF1711 /* ResourceLoaderItem.m */; settings = {ASSET_TAGS = (); }; };
 		006E4FC91BC74E2E00BF1711 /* CachableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 006E4FC81BC74E2E00BF1711 /* CachableData.m */; settings = {ASSET_TAGS = (); }; };
@@ -50,8 +50,8 @@
 		006E4FA41BC6F92200BF1711 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		006E4FA71BC70A8D00BF1711 /* NSURL+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Tools.h"; sourceTree = "<group>"; };
 		006E4FA81BC70A8D00BF1711 /* NSURL+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Tools.m"; sourceTree = "<group>"; };
-		006E4FAD1BC71EC200BF1711 /* ResourceLoaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceLoaderDelegate.h; sourceTree = "<group>"; };
-		006E4FAE1BC71EC200BF1711 /* ResourceLoaderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		006E4FAD1BC71EC200BF1711 /* ResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceLoader.h; sourceTree = "<group>"; };
+		006E4FAE1BC71EC200BF1711 /* ResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceLoader.m; sourceTree = "<group>"; };
 		006E4FB11BC7290300BF1711 /* ThreadSafeDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadSafeDictionary.h; sourceTree = "<group>"; };
 		006E4FB21BC7290300BF1711 /* ThreadSafeDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadSafeDictionary.m; sourceTree = "<group>"; };
 		006E4FB41BC72B0D00BF1711 /* ResourceLoaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceLoaderItem.h; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 		006E4FAC1BC71E0100BF1711 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				006E4FAD1BC71EC200BF1711 /* ResourceLoaderDelegate.h */,
-				006E4FAE1BC71EC200BF1711 /* ResourceLoaderDelegate.m */,
+				006E4FAD1BC71EC200BF1711 /* ResourceLoader.h */,
+				006E4FAE1BC71EC200BF1711 /* ResourceLoader.m */,
 				006E4FB41BC72B0D00BF1711 /* ResourceLoaderItem.h */,
 				006E4FB51BC72B0D00BF1711 /* ResourceLoaderItem.m */,
 				006E4FC71BC74E2E00BF1711 /* CachableData.h */,
@@ -277,7 +277,7 @@
 				006E4F831BC6F60F00BF1711 /* ViewController.m in Sources */,
 				006E4FC91BC74E2E00BF1711 /* CachableData.m in Sources */,
 				006E4FA51BC6F92200BF1711 /* PlayerViewController.m in Sources */,
-				006E4FAF1BC71EC200BF1711 /* ResourceLoaderDelegate.m in Sources */,
+				006E4FAF1BC71EC200BF1711 /* ResourceLoader.m in Sources */,
 				006E4FB31BC7290300BF1711 /* ThreadSafeDictionary.m in Sources */,
 				006E4FB61BC72B0D00BF1711 /* ResourceLoaderItem.m in Sources */,
 				006E4F801BC6F60F00BF1711 /* AppDelegate.m in Sources */,

@@ -27,13 +27,14 @@
 }
 @end
 
-@interface PlayerViewController ()
+@interface PlayerViewController () <ResourceLoaderDelegate>
 {
     AVPlayer *_player;
     ResourceLoader *_resourceLoader;
 }
 
 @property (nonatomic, weak) IBOutlet UIToolbar *playerToolBar;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 @property (nonatomic, assign) BOOL playing;
 
 @end
@@ -48,17 +49,14 @@
 - (void)preparePlayerWithURL:(NSURL *)url {
     if (_resourceLoader == nil) {
         _resourceLoader = [ResourceLoader new];
+        _resourceLoader.delegate = self;
     }
     
     [_resourceLoader cancelAllResourceLoadings];
     
     AVPlayerItem *playerItem = [_resourceLoader createNewPlayerItemWithURL:url];
-    if (_player == nil) {
-        _player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-        [(PlayerView *)self.view setPlayer:_player];
-    } else {
-        [_player replaceCurrentItemWithPlayerItem:playerItem];
-    }
+    _player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
+    [(PlayerView *)self.view setPlayer:_player];
 }
 
 #pragma mark - observing
@@ -73,8 +71,15 @@
     }
 }
 
-#pragma mark - UI
+#pragma mark - ResourceLoaderDelegate
+- (void)resourceLoader:(ResourceLoader *)resourceLoader didReceiveBytes:(unsigned long long)bytes totalBytesExpected:(uint64_t)total url:(NSURL *)url {
+    if (total > 0) {
+        float percent = ((float)bytes * 100/total);
+        self.infoLabel.text = [NSString stringWithFormat:NSLocalizedString(@"bytes received: (%.4f%%) ", nil), percent];
+    }
+}
 
+#pragma mark - UI
 - (void)updateToolbarButton {
     UIBarButtonSystemItem btnType = self.playing ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];

@@ -10,7 +10,7 @@
 #import "PlayerViewController.h"
 
 #define VIDEO_URL [NSURL URLWithString:@"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4"]
-#define M3U8_URL [NSURL URLWithString:@"http://itv.fregat.net/playlist/default.m3u"]
+#define M3U8_URL [NSURL URLWithString:@""]
 
 @interface ViewController ()
 @property (nonatomic, weak) PlayerViewController *playerController;

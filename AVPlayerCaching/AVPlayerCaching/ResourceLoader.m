@@ -107,6 +107,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"%@", request.dataRequest);
             [request.dataRequest respondWithData:data];
+            if ([self.delegate respondsToSelector:@selector(resourceLoader:didReceiveBytes:totalBytesExpected:url:)]) {
+                [self.delegate resourceLoader:self didReceiveBytes:request.dataRequest.currentOffset totalBytesExpected:request.contentInformationRequest.contentLength url:url];
+            }
         });
     }
 }
@@ -147,12 +150,10 @@
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    // TODO: data caching
     [self respondData:data forURL:dataTask.originalRequest.URL];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)dataTask didCompleteWithError:(NSError *)error {
-    // TODO: data storing to cache file
     [self cancelResourceLoadingForURL:dataTask.originalRequest.URL];
     [self finishLoadingResourceWithError:error forURL:dataTask.originalRequest.URL];
 }
