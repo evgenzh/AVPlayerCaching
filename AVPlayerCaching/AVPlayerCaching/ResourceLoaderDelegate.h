@@ -1,5 +1,5 @@
 //
-//  ResourceLoaderDelegate.h
+//  ResourceLoader.h
 //  AVPlayerCaching
 //
 //  Created by Eugene Zhuk Work on 09.10.15.
@@ -8,7 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface ResourceLoaderDelegate : NSObject <AVAssetResourceLoaderDelegate>
+@interface ResourceLoader : NSObject <AVAssetResourceLoader>
 - (AVPlayerItem *)createNewPlayerItemWithURL:(NSURL *)url;
 - (void)cancelResourceLoadingForURL:(NSURL *)url;
 - (void)cancelAllResourceLoadings;

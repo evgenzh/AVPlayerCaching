@@ -1,25 +1,25 @@
 //
-//  ResourceLoaderDelegate.m
+//  ResourceLoader.m
 //  AVPlayerCaching
 //
 //  Created by Eugene Zhuk Work on 09.10.15.
 //  Copyright © 2015 Eugene Zhuk. All rights reserved.
 //
 
-#import "ResourceLoaderDelegate.h"
+#import "ResourceLoader.h"
 #import "ResourceLoaderItem.h"
 #import "ThreadSafeDictionary.h"
 #import "CachableData.h"
 #import "NSURL+Tools.h"
 
-@interface ResourceLoaderDelegate () <NSURLSessionDataDelegate>
+@interface ResourceLoader () <NSURLSessionDataDelegate>
 {
     NSURLSession *_session;
 }
 @property (nonatomic, strong) ThreadSafeDictionary *items;
 @end
 
-@implementation ResourceLoaderDelegate
+@implementation ResourceLoader
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -34,7 +34,7 @@
     /// custom scheme makes enabled custom loading of asset resources
     NSURL *customSchemeURL = [url urlWithCustomScheme];
     AVURLAsset *asset = [AVURLAsset assetWithURL:customSchemeURL];
-    [asset.resourceLoader setDelegate:self queue:dispatch_queue_create("com.ResourceLoaderDelegate", nil)];
+    [asset.resourceLoader setDelegate:self queue:dispatch_queue_create("com.ResourceLoader", nil)];
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
     return item;
 }
@@ -122,7 +122,7 @@
     }
 }
 
-#pragma mark - AVAssetResourceLoaderDelegate
+#pragma mark - AVAssetResourceLoader
 - (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest {
     [self startLoadDataForRequest:loadingRequest];
     return YES;

@@ -7,7 +7,7 @@
 //
 
 #import "PlayerViewController.h"
-#import "ResourceLoaderDelegate.h"
+#import "ResourceLoader.h"
 
 @interface PlayerView : UIView
 @property (nonatomic, retain) AVPlayer *player;
@@ -30,7 +30,7 @@
 @interface PlayerViewController ()
 {
     AVPlayer *_player;
-    ResourceLoaderDelegate *_resourceLoader;
+    ResourceLoader *_resourceLoader;
 }
 
 @property (nonatomic, weak) IBOutlet UIToolbar *playerToolBar;
@@ -47,7 +47,7 @@
 
 - (void)preparePlayerWithURL:(NSURL *)url {
     if (_resourceLoader == nil) {
-        _resourceLoader = [ResourceLoaderDelegate new];
+        _resourceLoader = [ResourceLoader new];
     }
     
     [_resourceLoader cancelAllResourceLoadings];
